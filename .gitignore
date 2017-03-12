@@ -2,4 +2,4 @@
 *.ko
 *.obj
 *.elf
-./userdb.txt
+userdb.txt
