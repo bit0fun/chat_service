@@ -3,3 +3,5 @@
 *.obj
 *.elf
 userdb.txt
+server/database_log.txt
+server/server_log.txt
