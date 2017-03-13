@@ -6,13 +6,15 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <unistd.h>
+#include <pthread.h>
 
 #include "../lib/netfuncts.h"
 #include "../lib/genfunct.h"
 
+
+char *usrh = "usr:"; //for server to parse username from packet
 char* username;
 int usr_len = 0; //for length of username
-char *usrh = "usr:"; //for server to parse username from packet
 
 int getusername(char* username); //gets username from stdio
 int validateusername(char* username, int sockfd); //asks user to input username and loops to validate with server
@@ -57,9 +59,29 @@ int main(int argc, char* argv[]){
 	printf("Connected to server.\n");
   validateusername(username, sockfd); //asks user to input username and loops to validate with server
 
+	//thread creation for send and recieve
+	pthread_t threads[2]; //only one for each. May be updated for more functions
 
+	//setup args
+	struct sendm_arg *send_arg = (struct send_arg*) malloc(sizeof(struct sendm_arg));
+	struct recvm_arg *recv_arg = (struct recv_arg*) malloc(sizeof(struct recvm_arg));
 
-	close(sockfd); //close socket, then reconnect since things don't work otherwise
+	strcpy(send_arg->username, username); //because strings are evil things and dont like normal shit
+	send_arg->sockfd   = sockfd;
+
+	recv_arg->sockfd	 = sockfd;
+
+	printf("Setting up threads\n");
+
+	int send_thread = pthread_create(&threads[0], NULL, send_msg, (void *)send_arg);
+	int recv_thread = pthread_create(&threads[1], NULL, recv_msg, (void *)recv_arg);
+	if(send_thread || recv_thread){
+		  printf("\nERROR: return code from pthread create send_thread is %d\n", send_thread);
+			printf("ERROR: return code from pthread create recv_thread is %d\n", recv_thread);
+			return -1;
+		}
+	//close(sockfd); this breaks the code, need to keep it out (?)
+	while(1);
 	return 0;
 }
 

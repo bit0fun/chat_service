@@ -1,0 +1,72 @@
+Username received:	usr:test, 8 bytes long
+Error: Username database not found
+Username received:	usr:test, 8 bytes long
+Error: Username database not found
+Username received:	usr:test, 8 bytes long
+Error: Username database not found
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:tets, 8 bytes long
+Still searching for user...
+Could not find user, invalid name.
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:tets, 8 bytes long
+Still searching for user...
+Could not find user, invalid name.
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!
+Username received:	usr:test, 8 bytes long
+Found user!

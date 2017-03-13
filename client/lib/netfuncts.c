@@ -12,7 +12,7 @@ int send_string(int sockfd, unsigned char *buffer){
 		bytes_to_send -= sent_bytes;
 		buffer += sent_bytes;
 	}
-	printf("Sent string\r\n");
+	zerobuffer(buffer);
 	return	1; //for success (?)
 }
 
@@ -39,7 +39,8 @@ int recv_line(int sockfd, unsigned char *dest_buffer){
 		ptr++; //increment to next byte
 	}
 	printf("couldn't find EOL\n");
-	return 0; //couldn't find EOL
+	while(getchar() != '\n');
+	exit(1); //couldn't find EOL
 }
 
 
@@ -55,14 +56,43 @@ void handle_connection(int sockfd, struct sockaddr_in *client_addr_ptr, char *st
 
 }
 
-int zerobuffer(char *buffer){
-	int buff_len = sizeof(buffer);
-	for(int i = 0; i < buff_len; i++){
-		*(buffer+i) = 0;
-		if(*(buffer+i) != 0){
-			printf("Buffer could not be cleared.\n");
-			return -1;
-		}
+//sends message from username to server
+void *send_msg(void* args){
+	struct sendm_arg* send_arg = (struct sendm_arg*) args;
+	int sockfd = send_arg->sockfd;
+	char *username = send_arg->username;
+	char usr_buff[32];
+	char msg[4070];
+	char buffer[4096]; //may need to update to incorporate longer messages in the future
+
+
+	strcat(usr_buff, "usr:");
+	strncat(usr_buff, (const char *)username, sizeof(username)-2);
+
+	while(1){
+
+		printf("%s>", usr_buff);
+		sprintf(buffer, "%s>", usr_buff);
+		fgets(msg, 4070, stdin); //gets the message
+		*(msg + strlen(msg) -1) = '\0'; //formats the message properly
+		strncat(buffer, msg, strlen(msg));
+		strncat(buffer, "\r\n", 2);
+		send_string(sockfd, buffer);
+
 	}
-	return 0;
+
+
+}
+
+void *recv_msg(void* args){
+	struct recvm_arg* recv_arg = (struct recvm_arg*) args;
+	int sockfd = recv_arg->sockfd;
+	char title[20];
+	char msg[4070];
+	char buffer[4096]; //may need to update to incorporate longer messages in the future
+	while(1){
+		recv_line(sockfd, buffer);
+		printf("%s\n", buffer);
+	}
+
 }

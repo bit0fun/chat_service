@@ -68,17 +68,11 @@ int main(int argc, char* argv[]){
 		else{
 			write_log("server_log.txt", "Validated username, proceed sent.");
 		}
-		close(new_sockfd);
 
-
-
-
-
-
-
+		while(recv_msg(new_sockfd)); //gets messages until end of connection
 	}
 
-
+	close(new_sockfd);
 	return 0;
 }
 

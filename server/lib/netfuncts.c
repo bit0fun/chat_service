@@ -12,7 +12,7 @@ int send_string(int sockfd, unsigned char *buffer){
 		bytes_to_send -= sent_bytes;
 		buffer += sent_bytes;
 	}
-	printf("Sent string\r\n");
+
 	return	1; //for success (?)
 }
 
@@ -55,14 +55,20 @@ void handle_connection(int sockfd, struct sockaddr_in *client_addr_ptr, char *st
 
 }
 
-int zerobuffer(char *buffer){
-	int buff_len = sizeof(buffer);
-	for(int i = 0; i < buff_len; i++){
-		*(buffer+i) = 0;
-		if(*(buffer+i) != 0){
-			printf("Buffer could not be cleared.\n");
-			return -1;
-		}
+//sends message from username to server
+void send_msg(int sockfd, char* buffer){
+	send_string(sockfd, buffer);
+}
+
+int recv_msg(int sockfd){
+	char buffer[4096]; //may need to update to incorporate longer messages in the future
+
+	if(!recv_line(sockfd, buffer)){
+		close(sockfd);
+		return 0;
 	}
-	return 0;
+	printf("%s\n", buffer);
+	strncat(buffer, "\n\r\n", 2);
+	send_string(sockfd, buffer);
+	return 1;
 }

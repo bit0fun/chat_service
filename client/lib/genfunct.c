@@ -16,3 +16,16 @@ int write_log(char *log_file, char *string){
 
 	return 0;
 }
+
+//zeros buffer, self explanitory
+int zerobuffer(char *buffer){
+	int buff_len = sizeof(buffer);
+	for(int i = 0; i < buff_len; i++){
+		*(buffer+i) = 0;
+		if(*(buffer+i) != 0){
+			printf("Buffer could not be cleared.\n");
+			return -1;
+		}
+	}
+	return 0;
+}

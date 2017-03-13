@@ -14,5 +14,5 @@ GDB debugging targets available as well.
 ##How does it work?
 A client opens a TCP connection is made to the server, which can be an IP address or domain name, which then sends the user's
 username to the server. The server then looks up the username, which will either send an ACK or NACK, on whether it is found.
-After 5 tries, the server closes the connection to prevent some spam. 
-
+After 5 tries, the server closes the connection to prevent some spam.
+All data is written to individual log files, to prevent the command line from being bombarded. 

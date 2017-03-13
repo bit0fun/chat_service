@@ -16,10 +16,10 @@ all: $(TRG)
 
 .PHONY: debugcli
 debugcli: $(OBJ)
-	$(CC) -g -o ../$@  $^ $(CFLAGS) $(DEPS)
+	$(CC)  -pthread -g -o ../$@  $^ $(CFLAGS) $(DEPS)
 
 chat_client: $(OBJ)
-	$(CC) -o ../$@ $^ $(CFLAGS) $(DEPS)
+	$(CC) -pthread -o ../$@ $^ $(CFLAGS) $(DEPS)
 
 
 .PHONY: clean
