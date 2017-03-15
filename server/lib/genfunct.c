@@ -29,3 +29,22 @@ int zerobuffer(char *buffer){
 	}
 	return 0;
 }
+
+char** parse_msg(char* in_buffer, char* start_tag, char* end_tag, char* replace){
+	char** tokenstr;
+	char* tok = in_buffer;
+	int counter = 0;
+	if(replace == 0){ //nothing to replace
+		while((tok = strtok(tok, search)) != NULL){ //split everything up into a string array
+			sprintf(*(tokenstr+counter), "%s", tok);
+			counter++;
+		}
+
+		return tokenstr; //return the string array
+	}
+	else{
+
+	}
+
+
+}
