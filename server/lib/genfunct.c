@@ -30,21 +30,28 @@ int zerobuffer(char *buffer){
 	return 0;
 }
 
-char** parse_msg(char* in_buffer, char* start_tag, char* end_tag, char* replace){
+char** parse_msg(char* in_buffer){
 	char** tokenstr;
 	char* tok = in_buffer;
 	int counter = 0;
-	if(replace == 0){ //nothing to replace
 		while((tok = strtok(tok, search)) != NULL){ //split everything up into a string array
 			sprintf(*(tokenstr+counter), "%s", tok);
 			counter++;
 		}
-
+		sprintf(*(tokenstr+counter+1), NULL);
 		return tokenstr; //return the string array
-	}
-	else{
 
+}
+
+int msg_function_handle(char* in_buffer, char* start_tag, char* end_tag, char* replace){
+	char** tokens = parse_msg(in_buffer);
+	int ntok = -1;
+	while(tokens[++ntok] != NULL);//gets number of elements in array of strings
+	for (int i = 0; i < ntok; i++) {
+		
 	}
+
+
 
 
 }
